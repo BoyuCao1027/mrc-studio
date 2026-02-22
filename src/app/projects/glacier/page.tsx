@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, MapPin, mountain, Camera } from "lucide-react";
+import { ArrowLeft, MapPin, Mountain, Camera } from "lucide-react";
 import Link from "next/link";
 
 const LANDSCAPES = [
