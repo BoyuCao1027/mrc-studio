@@ -19,43 +19,71 @@ const ALASKA_SECTIONS = [
   {
     id: "wildlife",
     layout: "split-sticky", // 布局类型：左图右文 (文字固定)
-    title: "Encounters in the Wild",
-    description: "We tracked the coastline for hours, the air crisp with glacial chill. Suddenly, a silhouette broke the waterline. Observing these majestic creatures in their undisturbed habitat was a profound reminder of the wild's delicate balance.",
+    title: "Glacier",
+    description: "We fly thousands of miles here, to witness the glacier that has been here since the very beginnning",
     photos: [
-      { src: "/photography/alaska-1.jpg", caption: "A coastal brown bear scanning for salmon." },
-      { src: "/photography/alaska-2.jpg", caption: "Bald eagle perched on driftwood." },
-      { src: "/photography/alaska-3.jpg", caption: "Sea otter floating amongst the kelp." },
+      { src: "/photography/alaska-1.jpg", caption: "Bear Glacier, from the view on a kayak." },
+      { src: "/photography/alaska-2.jpg", caption: "Portage Lake, by the very entrance of Whitter." },
+      { src: "/photography/alaska-3.jpg", caption: "Matanuska Glacier." },
     ],
   },
   {
     id: "glacier",
     layout: "full-width-break", // 布局类型：全宽视觉沉浸
     photo: "/photography/alaska-4.jpg", // 替换为极其壮观的冰川全景
-    caption: "The textures of ancient ice, forged over millennia.",
+    caption: "Getting nboard, cruise is one of the best way to explore Kenai Fjords .",
   },
   {
     id: "details",
     layout: "editorial-grid", // 布局类型：杂志感拼贴配文
-    title: "The Silent Textures",
+    title: "Seward, gateway to Kenai Fjords",
     description: "Beyond the grand vistas, the true essence of Alaska lies in the details. The quality of light hitting a mountain peak, the jagged lines of a receding glacier, the abstract patterns of frozen water.",
     photos: [
-      { src: "/photography/alaska-5.jpg", caption: "Mountain layers at dusk.", span: "col-span-2" },
-      { src: "/photography/alaska-6.jpg", caption: "Glacial blue ice detail.", span: "col-span-1" },
-      { src: "/photography/alaska-7.jpg", caption: "Reflections on a frozen lake.", span: "col-span-1" },
-      // 🌟 修复后的 3 张新图：注意它们现在都有独立的 {} 和逗号隔开了
       { 
-        src: "/photography/alaska/new-texture-1.jpg", 
-        caption: "Abstract ice formation details.", 
+        src: "/photography/alaska-5.jpg", 
+        caption: "Bald Eagle captured in a rainy day.", 
+        span: "col-span-1 md:col-span-2 md:row-span-2" 
+      },
+      { 
+        src: "/photography/alaska-6.jpg", 
+        caption: "Alaska Samlon Run near bear creek.", 
         span: "col-span-1" 
       },
       { 
-        src: "/photography/alaska/new-texture-2.jpg", 
-        caption: "Close-up of frozen tundra flora.", 
+        src: "/photography/alaska-7.jpg", 
+        caption: "Puffin in the open water near Kenai Fjords National Park.", 
         span: "col-span-1" 
       },
-
-    ],
+      { 
+        src: "/photography/alaska-8.jpg", 
+        caption: "Exit Glacier View Point.",
+        span: "col-span-1" 
+      },
+      { 
+        src: "/photography/alaska-9.jpg", 
+        caption: "Sea Otter in Resurrection Bay.", 
+        span: "col-span-1" 
+      },
+      { 
+        src: "/photography/alaska-10.jpg", 
+        caption: "Moose near Anchorage.", 
+        span: "col-span-1" 
+      }
+    ], // 🌟 这里关闭 details 的 photos 数组
   },
+  // 🌟 这里是全新独立出来的 gallery 版块，它和 details 是平级的！
+  {
+    id: "gallery",
+    layout: "thumbnail-grid", // 全新的无字小图布局
+    photos: [
+      "/photography/alaska-11.jpg",
+      "/photography/alaska-12.jpg",
+      "/photography/alaska-13.jpg",
+      "/photography/alaska-14.jpg",
+      "/photography/alaska-15.jpg",
+      "/photography/alaska-16.jpg",
+    ]
+  }
 ]; 
 
 
@@ -64,10 +92,9 @@ export default function AlaskaProjectPage() {
   const containerRef = useRef(null);
 
   return (
-    // 🌟 Vibe Check: 保持与主页一致的高级灰白背景
     <main ref={containerRef} className="bg-[#fcfcfc] text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white min-h-screen">
       
-      {/* --- 悬浮导航栏 (保持一致性) --- */}
+      {/* --- 悬浮导航栏 --- */}
       <nav className="fixed top-6 left-0 right-0 z-40 flex justify-center">
         <div className="w-[90%] max-w-5xl px-6 py-4 rounded-full border border-zinc-200/50 bg-white/80 backdrop-blur-md shadow-sm flex justify-between items-center">
           <Link href="/" className="group flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium text-zinc-500 hover:text-zinc-900 transition-colors">
@@ -75,7 +102,7 @@ export default function AlaskaProjectPage() {
             <span>Back to Home</span>
           </Link>
           <h1 className="font-playfair font-bold text-lg tracking-tighter">Mrcphotography.</h1>
-          <div className="w-[100px]"></div> {/* 占位符以保持居中平衡 */}
+          <div className="w-[100px]"></div>
         </div>
       </nav>
 
@@ -83,11 +110,10 @@ export default function AlaskaProjectPage() {
       <div className="pb-32">
         {ALASKA_SECTIONS.map((section, index) => {
           
-          // --- Layout 1: Hero Section (史诗开篇) ---
+          // --- Layout 1: Hero Section ---
           if (section.layout === "hero") {
             return (
               <section key={section.id} className="relative h-[90vh] flex items-end justify-start pb-20 px-6 md:px-20 overflow-hidden">
-                {/* 背景大图 (带视差效果) */}
                 <div className="absolute inset-0 z-0">
                   <motion.img
                     initial={{ scale: 1.1 }}
@@ -100,7 +126,6 @@ export default function AlaskaProjectPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 </div>
                 
-                {/* 文字内容 */}
                 <motion.div 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -118,13 +143,12 @@ export default function AlaskaProjectPage() {
             );
           }
 
-          // --- Layout 2: Split Sticky (左图右文，杂志感核心) ---
+          // --- Layout 2: Split Sticky ---
           if (section.layout === "split-sticky") {
             return (
               <section key={section.id} className="max-w-7xl mx-auto px-6 md:px-20 py-32 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
-                {/* 左侧：滚动的照片流 */}
                 <div className="lg:col-span-7 flex flex-col gap-12">
-                  {section.photos?.map((photo, i) => (
+                  {section.photos?.map((photo: any, i) => (
                     <div key={i} className="group">
                       <motion.div
                         layoutId={`photo-${photo.src}`}
@@ -134,7 +158,6 @@ export default function AlaskaProjectPage() {
                       >
                         <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       </motion.div>
-                      {/* 图片说明 caption */}
                       <div className="flex items-center gap-2 text-zinc-400 text-[10px] uppercase tracking-[0.2em] pl-1">
                         <Camera size={12} />
                         <span>{photo.caption}</span>
@@ -143,7 +166,6 @@ export default function AlaskaProjectPage() {
                   ))}
                 </div>
 
-                {/* 右侧：固定的文字叙述 (Sticky) */}
                 <div className="lg:col-span-5 lg:h-[calc(100vh-200px)] lg:sticky lg:top-32 flex flex-col justify-center">
                   <motion.div
                      initial={{ opacity: 0, x: 20 }}
@@ -160,13 +182,13 @@ export default function AlaskaProjectPage() {
             );
           }
 
-          // --- Layout 3: Full Width Break (视觉沉浸横幅) ---
+          // --- Layout 3: Full Width Break ---
           if (section.layout === "full-width-break") {
             return (
               <section key={section.id} className="py-20">
                 <motion.div 
                   layoutId={`photo-${section.photo}`}
-                  onClick={() => setSelectedImage(section.photo)}
+                  onClick={() => setSelectedImage(section.photo!)}
                   className="w-full h-[80vh] relative cursor-zoom-in group overflow-hidden"
                 >
                    <img src={section.photo} alt="Full width" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -178,7 +200,7 @@ export default function AlaskaProjectPage() {
             );
           }
 
-           // --- Layout 4: Editorial Grid (杂志拼贴+文字) ---
+           // --- Layout 4: Editorial Grid ---
            if (section.layout === "editorial-grid") {
             return (
               <section key={section.id} className="max-w-7xl mx-auto px-6 md:px-20 py-32">
@@ -187,7 +209,7 @@ export default function AlaskaProjectPage() {
                     <p className="text-zinc-500 text-lg leading-relaxed font-light">{section.description}</p>
                  </div>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {section.photos?.map((photo, i) => (
+                    {section.photos?.map((photo: any, i) => (
                        <div key={i} className={`group ${photo.span || 'col-span-1'}`}>
                           <motion.div
                             layoutId={`photo-${photo.src}`}
@@ -204,6 +226,52 @@ export default function AlaskaProjectPage() {
               </section>
             );
           }
+
+          // 🌟🌟🌟 Layout 5: Thumbnail Grid (底部无字小图画廊) 🌟🌟🌟
+          if (section.layout === "thumbnail-grid") {
+            return (
+              <section key={section.id} className="max-w-7xl mx-auto px-6 md:px-20 py-24 border-t border-zinc-100">
+                 
+                 {/* 👇👇👇 新增：艺术感标题区 👇👇👇 */}
+                 <div className="text-center mb-16">
+                    {/* 极简装饰短线 */}
+                    <motion.div 
+                       initial={{ width: 0 }}
+                       whileInView={{ width: 40 }}
+                       transition={{ duration: 0.8, delay: 0.2 }}
+                       className="h-[1px] bg-amber-700/50 mx-auto mb-6"
+                    />
+                    {/* 优雅的衬线艺术字 */}
+                    <motion.h3 
+                       initial={{ opacity: 0, y: 20 }}
+                       whileInView={{ opacity: 1, y: 0 }}
+                       transition={{ duration: 0.8 }}
+                       className="font-playfair text-3xl md:text-4xl italic text-zinc-600 tracking-tight"
+                    >
+                      The Extended Archive.
+                    </motion.h3>
+                 </div>
+                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                    {(section.photos as string[])?.map((src, i) => (
+                       <motion.div
+                          key={i}
+                          layoutId={`photo-${src}`}
+                          onClick={() => setSelectedImage(src)}
+                          whileHover={{ scale: 0.95 }}
+                          className="aspect-square overflow-hidden rounded-sm cursor-zoom-in bg-zinc-100"
+                       >
+                          <img 
+                            src={src} 
+                            alt={`Gallery image ${i + 1}`} 
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-110 grayscale-[30%] hover:grayscale-0" 
+                          />
+                       </motion.div>
+                    ))}
+                 </div>
+              </section>
+            );
+          }
+
         })}
       </div>
 
@@ -215,7 +283,7 @@ export default function AlaskaProjectPage() {
         </p>
       </footer>
 
-      {/* --- Lightbox 灯箱 (复用主页的逻辑) --- */}
+      {/* --- Lightbox 灯箱 --- */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -237,7 +305,6 @@ export default function AlaskaProjectPage() {
                 alt="Enlarged view" 
                 className="max-w-full max-h-full object-contain rounded-sm drop-shadow-2xl"
               />
-              {/* 水印 */}
               <div className="absolute bottom-4 right-4 select-none">
                  <p className="font-playfair text-zinc-900/20 text-xs tracking-[0.3em] uppercase italic">
                     © Mrcphotography / Alaska Series
@@ -250,4 +317,4 @@ export default function AlaskaProjectPage() {
 
     </main>
   );
-}
+} 
