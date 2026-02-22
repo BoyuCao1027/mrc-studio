@@ -6,19 +6,25 @@ import { ArrowRight, Instagram, Mail } from "lucide-react";
 import Link from "next/link";
 
 const PROJECTS = [
-  {
-    id: "lake-tahoe",
-    title: "Lake Tahoe: Meditation on the Shore",
-    cover: "/photography/tahoe-hero.jpg", 
-    date: "Jan 2026",
-  },
-  {
-    id: "glacier", // 必须对应刚才创建的文件夹名
-    title: "Glacier: The Crown of Continent",
-    cover: "/photography/glacier-hero.jpg", 
-    date: "SEP 2025",
-  },
-];
+    {
+      id: "lake-tahoe",
+      title: "Lake Tahoe: Full Moon on Nevada Mountain Range",
+      cover: "/photography/tahoe-hero.jpg", 
+      date: "Jan 2026",
+    },
+    {
+      id: "glacier",
+      title: "Glacier: The Crown of Continent",
+      cover: "/photography/glacier-hero.jpg", 
+      date: "SEP 2025",
+    },
+    {
+      id: "alaska", // 这个 id 会自动生成链接：/projects/alaska
+      title: "Alaska: The Last Frontier", // 延续你的诗意标题风格
+      cover: "/photography/alaska-hero.jpg", // 
+      date: "Jun 2025",
+    },
+  ];
 
 // 主页介绍图路径
 const FEATURED_IMAGE = "/photography/MainpagePic.jpg";
