@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* 这里保留你之前的样式 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 如果你需要定义之前的字体变量，可以在这里添加 */
+@theme {
+  --font-playfair: var(--font-playfair);
+  --font-inter: var(--font-inter);
+}
+html {
+  scroll-behavior: smooth;
+}
